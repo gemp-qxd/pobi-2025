@@ -200,5 +200,9 @@ int main() {
         cout << x << " ";
     }
 
+    int matriz[3][5];
+
+    vector<vector<int>> matriz(3, vector<int>(3));
+
     return 0;
 }
