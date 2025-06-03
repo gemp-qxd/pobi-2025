@@ -1,20 +1,22 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-int main() {
-    int s{}, t{};
-    cin >> s >> t;
+const int MAX = 1001;
 
-    unordered_map<int, set<int>> grafo;
+int grafo[MAX][MAX];
+
+int main() {
+    int s, t;
+    cin >> s >> t;
 
     int x, y;
     for (int i = 0; i < t; ++i) {
         cin >> x >> y;
-        grafo[x].insert(y);
-        grafo[y].insert(x);
+        grafo[x][y] = 1;
+        grafo[y][x] = 1;
     }
 
-    int quantidade_passeios_possiveis{}, p{};
+    int quantidade_passeios_possiveis = 0, p;
     cin >> p;
 
     while (p--) {
@@ -26,7 +28,7 @@ int main() {
         }
         bool deu_bom = true;
         for (int i = 0; i < n - 1; ++i) {
-            if (grafo[passeio[i]].find(passeio[i + 1]) == grafo[passeio[i]].end()) {
+            if (!grafo[passeio[i]][passeio[i + 1]]) {
                 deu_bom = false;
                 break;
             }
